@@ -1,6 +1,10 @@
 {
   "name": "better-auth",
   "version": "0.1.0",
+  "author": {
+    "name": "Andrii Ivashchuk",
+    "url": "https://github.com/andriilive"
+  },
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -44,6 +48,7 @@
     "@next/env": "^15.5.6",
     "@svgr/webpack": "^8.1.0",
     "@tailwindcss/postcss": "^4",
+    "@types/negotiator": "^0.6.4",
     "@types/node": "^20.19.22",
     "@types/react": "^19",
     "@types/react-dom": "^19",

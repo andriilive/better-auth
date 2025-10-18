@@ -13,10 +13,13 @@ export function Navbar() {
   const {user} = useUser()
 
   return (
-    <header className="sticky top-0 z-100 flex justify-center py-2">
-      <div className="container border rounded-md w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 py-2 px-4">
+    <header className="sticky top-0 z-100 flex justify-center">
+      <div className="px-10 w-full pt-4">
         <nav className="flex items-center justify-between gap-4 sm:gap-6">
           <Logo />
+          <Link href={'/'}>/</Link>
+          <Link href={'/sign-in'}>/sign-in</Link>
+          <Link href={'/sign-up'}>/sign-up</Link>
           <div className="flex items-center gap-2">
             {user ? (
               <>

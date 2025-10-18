@@ -1,7 +1,6 @@
-
 import SignUpSection from '@/components/sign-up-section'
 
-export default function SignUp() {
+export default function SignUpPage() {
    return (
       <>
          <SignUpSection />

@@ -4,7 +4,6 @@ import { auth } from "@/lib/auth";
 import type {SearchParams} from "next/dist/server/request/search-params";
 import { headers } from "next/headers";
 import { UserProvider } from "@/context/UserContext";
-import { StarsBackground } from "@/components/animate-ui/backgrounds/stars";
 
 export default async function HomeLayout({children}: {
     children: React.ReactNode;
@@ -17,16 +16,11 @@ export default async function HomeLayout({children}: {
    const user = session?.user ?? null;
    return (
       <UserProvider user={user}>
-         <div className="relative">
-            <div className="absolute inset-x-0 top-0 w-full h-[450px] sm:h[500px] md:h-[550px] lg:h-[800px] -z-10 pointer-events-none">
-               <StarsBackground className="w-full h-full" />
-            </div>
-            <Navbar />
-            <main>
-               {children}
-            </main>
-            <Footer />
-         </div>
+        <Navbar/>
+        <main>
+          {children}
+        </main>
+        <Footer/>
       </UserProvider>
    );
 }

@@ -50,27 +50,18 @@ export const localesConfig : {
   }
 };
 
-export const translatePath = (newLang: I18nLocale, path: string, currentLang: I18nLocale = defaultLocale) => {
-  if (newLang === currentLang) return path;
-  const isDefaultLang = newLang === defaultLocale;
-  const segments = path.split('/').filter(Boolean);
+// TypeScript
+export const translatePath = (
+  newLang: I18nLocale,
+  path: string,
+): string => {
+  const isDefault = newLang === defaultLocale;
+  return isDefault ? path : `/${newLang}${path === '/' ? '' : path}`;
+};
 
-  // Remove current lang segment
-  if (locales.includes(segments[0] as I18nLocale)) {
-    segments.shift();
-  }
-
-  // Prepend new lang segment if not default
-  if (!isDefaultLang) {
-    segments.unshift(newLang);
-  }
-
-  return '/' + segments.join('/');
-}
-
-export const getAlternates = (pathname: string, currentLang: I18nLocale = defaultLocale) => {
+export const getAlternates = (pathname: string) => {
   return locales.map((locale) => ({
     hrefLang: locale,
-    href: translatePath(locale, pathname, currentLang)
+    href: translatePath(locale, pathname)
   }))
 }
