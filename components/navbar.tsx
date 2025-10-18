@@ -1,5 +1,8 @@
 "use client"
 
+import {LangToggle} from "@/components/lang-toggle";
+import {ThemeToggle} from "@/components/theme-toggle";
+import {useTranslations} from "@/context/I18nContext";
 import Link from 'next/link'
 import React from 'react'
 import { Button } from './ui/button'
@@ -9,7 +12,8 @@ import { GithubStars } from './github-stars'
 import { useUser } from '@/context/UserContext'
 
 export default function Navbar() {
-   const user = useUser();
+   const {user} = useUser();
+   const {} = useTranslations();
    return (
       <header className="sticky top-0 z-100 flex justify-center py-2">
          <div className="container border rounded-md w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 py-2 px-4">
@@ -49,6 +53,8 @@ export default function Navbar() {
                      </>
                   )}
                   <GithubStars />
+                  <ThemeToggle />
+                  <LangToggle />
                </div>
             </nav>
          </div>

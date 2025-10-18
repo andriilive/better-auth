@@ -28,11 +28,5 @@ export const UserProvider = ({
 export const useUser = () => {
    const context = useContext(UserContext);
    if (!context) throw new Error("useUser must be used within a UserProvider");
-   return context.user;
-};
-
-export const useSetUser = () => {
-   const context = useContext(UserContext);
-   if (!context) throw new Error("useSetUser must be used within a UserProvider");
-   return context.setUser;
+   return context;
 };

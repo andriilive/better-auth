@@ -1,0 +1,72 @@
+import {ThemeProvider} from "@/components/theme-provider";
+import {Toaster} from "@/components/ui/sonner";
+import {I18nProvider} from "@/context/I18nContext";
+import {type I18nLocale, locales} from "@/lib/i18n";
+import type {Metadata} from "next";
+import {Noto_Sans_KR} from 'next/font/google';
+import "@/app/globals.css";
+import {notFound} from "next/navigation";
+import NextTopLoader from "nextjs-toploader";
+import type {PropsWithChildren} from "react";
+
+const notoSansKR = Noto_Sans_KR({
+  weight: [
+    '300',
+    '400',
+    '500',
+    '700'
+  ],
+  subsets: ['latin'],
+  variable: '--font-noto-sans-kr',
+  display: 'swap',
+});
+
+export const metadata: Metadata = {
+  title: "Better Auth Starter",
+  description: "Next.js + Better Auth + Shadcn UI + Tailwind CSS",
+  icons: {
+    icon: '/logo.png'
+  }
+};
+
+export function generateStaticParams() {
+  return locales.map((locale) => ({locale}));
+}
+
+export type LangSegmentProps = {
+  params: Promise<{
+    lang: I18nLocale;
+  }>
+}
+
+export default async function RootLayout({
+  children,
+  params
+}: PropsWithChildren<LangSegmentProps>) {
+  const {lang} = await params;
+
+  if (!lang || !locales.includes(lang)) {
+    return notFound()
+  }
+
+  return (
+    <html lang={lang} className={`${notoSansKR.variable}`} suppressHydrationWarning>
+    <body className="antialiased">
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="light"
+      enableSystem={false}
+      disableTransitionOnChange
+    >
+      <NextTopLoader showSpinner={false} height={6} color="#000000"/>
+      <I18nProvider initialLocale={lang}>
+        <Toaster richColors position="top-right"/>
+        <main className="min-h-screen">
+          {children}
+        </main>
+      </I18nProvider>
+    </ThemeProvider>
+    </body>
+    </html>
+  );
+}

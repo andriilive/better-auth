@@ -12,7 +12,7 @@ import { Check, Clock, Mail, MapPin, Shield } from "lucide-react"
 import { useUser } from "@/context/UserContext"
 
 export default function ProfileCard() {
-   const user = useUser();
+   const {user} = useUser();
    return (
       <Card className="overflow-hidden">
          <CardHeader className="relative p-0">
