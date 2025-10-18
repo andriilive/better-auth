@@ -1,13 +1,12 @@
-import {ThemeProvider} from "@/components/theme-provider";
+import {ThemeProvider} from "@/components/theme/ThemeProvider";
 import {Toaster} from "@/components/ui/sonner";
 import {I18nProvider} from "@/context/I18nContext";
-import {type I18nLocale, locales} from "@/lib/i18n";
+import {locales} from "@/lib/i18n";
 import type {Metadata} from "next";
 import {Noto_Sans_KR} from 'next/font/google';
 import "@/app/globals.css";
 import {notFound} from "next/navigation";
 import NextTopLoader from "nextjs-toploader";
-import type {PropsWithChildren} from "react";
 
 const notoSansKR = Noto_Sans_KR({
   weight: [
@@ -30,19 +29,16 @@ export const metadata: Metadata = {
 };
 
 export function generateStaticParams() {
-  return locales.map((locale) => ({locale}));
+  return [
+    {lang: 'en'},
+    {lang: 'cs'}
+  ];
 }
 
-export type LangSegmentProps = {
-  params: Promise<{
-    lang: I18nLocale;
-  }>
-}
-
-export default async function RootLayout({
-  children,
-  params
-}: PropsWithChildren<LangSegmentProps>) {
+export default async function RootLayout({children, params}: {
+  children: React.ReactNode,
+  params: Promise<{ lang: 'en' | 'cs' }>
+}) {
   const {lang} = await params;
 
   if (!lang || !locales.includes(lang)) {

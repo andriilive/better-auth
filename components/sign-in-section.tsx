@@ -1,10 +1,10 @@
 "use client"
 
 import { signInWithGoogle } from "@/actions/google-auth-action"
-import Logo from "@/components/logo"
 import SignInForm from "@/components/sign-in-form"
 import { Button } from "@/components/ui/button"
-import Link from "next/link"
+import Link from "@/components/i18n/Link"
+import Logo from "@/components/Logo"
 import { JSX, SVGProps } from "react"
 
 const GoogleIcon = (

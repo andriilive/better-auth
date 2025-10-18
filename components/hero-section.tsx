@@ -1,8 +1,6 @@
-"use client"
-
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, Sparkles } from "lucide-react";
-import Link from "next/link";
+import Link from "@/components/i18n/Link";
 import { Badge } from "./ui/badge";
 import FadeInView from "./animate-ui/fade-in-view";
 
