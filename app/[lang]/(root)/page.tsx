@@ -1,7 +1,11 @@
-import { HomePage } from "@/components/pages/HomePage";
+import { EmptyUploads } from "@/components/uploads/EmptyUploads";
 
-export default async function Home() {
+export default async function PageHome() {
   return (
-    <HomePage />
+    <main className=''>
+      <div className='mx-auto px-4 pt-8'>
+        <EmptyUploads/>
+      </div>
+    </main>
   );
 }

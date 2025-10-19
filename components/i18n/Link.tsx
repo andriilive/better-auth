@@ -14,20 +14,23 @@ const Link: LinkProps = ({ isTranslatible = true, href, ...props }) => {
   const pathname = usePathname();
   const { lang } = useTranslations();
 
+  let className = props.className ?? "";
+  const isExternal = typeof href === "string" && (href.startsWith("http://") || href.startsWith("https://"));
+
+  if (isExternal) {
+    isTranslatible = false;
+  }
+
   if (isTranslatible) {
+    className += " link-external ";
     href = translatePath(lang, href ? href.toString() : "#");
   }
 
   const isCurrent = href === pathname;
 
-  const isExternal = typeof href === "string" && (href.startsWith("http://") || href.startsWith("https://"));
-  let className = props.className ?? "";
   // if current add current class
-  if (isCurrent) {
+  if (isCurrent && !isExternal) {
     className += " link-current ";
-  }
-  if (isExternal) {
-    className += " link-external ";
   }
 
   props = {

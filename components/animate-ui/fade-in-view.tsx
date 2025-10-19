@@ -60,7 +60,7 @@ export default function FadeInView({
    return (
       <motion.div
          ref={ref}
-         initial="hidden"
+         initial='hidden'
          animate={inView ? "visible" : exit ? "exit" : "hidden"}
          variants={variants}
          className={className}

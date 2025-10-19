@@ -11,17 +11,17 @@ export default function AppSidebar({ ...props }: React.ComponentProps<typeof Sid
   const pathname = usePathname();
   const isActive = pathname.startsWith("/dashboard")
   return (
-    <Sidebar collapsible="offcanvas" {...props}>
-      <SidebarHeader className="flex items-center">
+    <Sidebar collapsible='offcanvas' {...props}>
+      <SidebarHeader className='flex items-center'>
         <Logo />
       </SidebarHeader>
       <SidebarContent>
-        <SidebarMenu className="px-2 py-4">
+        <SidebarMenu className='px-2 py-4'>
           <SidebarMenuItem>
-            <SidebarMenuButton isActive={isActive} size="lg">
-              <Link href="/dashboard" className={`${isActive ? "text-foreground" : "text-primary"} flex items-center gap-3`}>
-                <div className="flex h-9 w-9 items-center justify-center rounded-md bg-primary/10">
-                  <LayoutDashboard className="h-5 w-5"/>
+            <SidebarMenuButton isActive={isActive} size='lg'>
+              <Link href='/dashboard' className={`${isActive ? "text-foreground" : "text-primary"} flex items-center gap-3`}>
+                <div className='flex h-9 w-9 items-center justify-center rounded-md bg-primary/10'>
+                  <LayoutDashboard className='h-5 w-5'/>
                 </div>
                 <span className={`text-sm font-medium`}>Dashboard</span>
               </Link>

@@ -1,30 +1,61 @@
+import Link from "@/components/i18n/Link";
+
+import packageJson from "@/package.json"
 import { Loader, Star } from "lucide-react";
+import { Suspense } from "react"
 
-export async function GithubStars() {
 
-  const stars = await fetch("http://localhost:3000/api/github-star", {
-    cache: "force-cache",
-next: {
-      revalidate: 86400,
-    },
-  });
-  let starsResult: number | null = null;
-  if (stars.ok) {
-    const data = await stars.json();
-    starsResult = data.stars;
+interface GitHubStarsProps {
+  owner: string
+  repo: string
+}
+
+export const GITHUB_REPO: GitHubStarsProps = {
+  owner: packageJson.author.name || "andriilive",
+  repo: packageJson.name || "andriilive",
+}
+
+async function fetchGitHubStars(owner: string, repo: string) {
+  const res = await fetch(`https://api.github.com/repos/${owner}/${repo}`, {
+    next: { revalidate: 86400 }, // Revalidate every 24 hours (86400 seconds)
+  })
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch GitHub stars")
   }
+
+  const data = await res.json()
+  return data.stargazers_count as number
+}
+
+async function GitHubStarsContent({ owner, repo }: GitHubStarsProps) {
+  const stars = await fetchGitHubStars(owner, repo)
+
+  return (
+    <span className='font-medium'>{stars.toLocaleString()}</span>
+  )
+}
+
+export function GithubStars({
+  owner = GITHUB_REPO.owner,
+  repo = GITHUB_REPO.repo,
+}: Partial<GitHubStarsProps>) {
+
+  const repoSlug = `${owner}/${repo}`
+  const repoUrl = `https://github.com/${repoSlug}`
 
   return (
     <div
-      className="inline-flex items-center gap-1 px-3 py-1.5 text-sm rounded-full border bg-muted text-muted-foreground hover:bg-muted/70 transition"
-      title="GitHub Stars for devAaus/better-auth"
+      className='text-sm rounded-full border bg-muted text-muted-foreground hover:bg-muted/70 transition'
     >
-      <Star className="w-4 h-4 text-yellow-500"/>
-      {starsResult !== null ? (
-        <span className="font-medium">{starsResult}</span>
-      ) : (
-        <Loader className="w-4 h-4 animate-spin"/>
-      )}
+      <Link title={`GitHub Stars for ${repoSlug}`} href={repoUrl} isTranslatible={false} rel={"me"} className='px-4 py-1.5 inline-flex items-center gap-1'>
+        <span className='pr-1'>{repoSlug}</span>
+        <i className='divider pl-1 h-4 border-l border-muted-foreground/50'/>
+        <Suspense fallback={<Loader className='w-4 h-4 animate-spin'/>}>
+          <GitHubStarsContent owner={owner} repo={repo}/>
+        </Suspense>
+        <Star className='w-4 h-4 text-yellow-500'/>
+      </Link>
     </div>
-  );
+  )
 }

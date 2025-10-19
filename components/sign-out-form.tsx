@@ -32,7 +32,7 @@ export default function SignOutForm() {
    }
    return (
       <Button variant={"destructive"} onClick={handleLogout}>
-         <LogOut className="mr-2 h-4 w-4" />
+         <LogOut className='mr-2 h-4 w-4' />
          SignOut
       </Button>
    )

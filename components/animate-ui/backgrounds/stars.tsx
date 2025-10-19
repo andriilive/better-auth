@@ -45,14 +45,14 @@ function StarLayer({
 
   return (
     <motion.div
-      data-slot="star-layer"
+      data-slot='star-layer'
       animate={{ y: [0, -2000] }}
       transition={transition}
       className={cn("absolute top-0 left-0 w-full h-[2000px]", className)}
       {...props}
     >
       <div
-        className="absolute bg-transparent rounded-full"
+        className='absolute bg-transparent rounded-full'
         style={{
           width: `${size}px`,
           height: `${size}px`,
@@ -60,7 +60,7 @@ function StarLayer({
         }}
       />
       <div
-        className="absolute bg-transparent rounded-full top-[2000px]"
+        className='absolute bg-transparent rounded-full top-[2000px]'
         style={{
           width: `${size}px`,
           height: `${size}px`,
@@ -113,7 +113,7 @@ factor,
 
   return (
     <div
-      data-slot="stars-background"
+      data-slot='stars-background'
       className={cn(
         "relative size-full overflow-hidden bg-[radial-gradient(ellipse_at_bottom,_#262626_0%,_#000_100%)]",
         className,

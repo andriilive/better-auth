@@ -8,6 +8,9 @@ const eslintConfig = [
   ...compat.config({
     extends: ['next/core-web-vitals', 'next/typescript'],
     ignorePatterns: [
+      '*.css',
+      '*.svg',
+      '*.json',
       'node_modules/',
       'build/',
       'dist/',
@@ -25,19 +28,20 @@ const eslintConfig = [
       'import/extensions': 'off',
       'no-unused-vars': 'off',
       'no-console': ['warn', {allow: ['warn', 'error']}],
-      '@typescript-eslint/no-unused-vars': 'off',
       'comma-dangle': ['warn', 'always-multiline'],
       'comma-spacing': ['warn', {'before': false, 'after': true}],
       'object-curly-spacing': ['warn', 'always'],
       'object-curly-newline': ['warn', {'multiline': true, 'consistent': true}],
       'array-bracket-newline': ['warn', {'minItems': 3, 'multiline': true}],
-      'array-element-newline': ['warn', {'minItems': 3, 'multiline': false}],
+      'array-element-newline': ['warn', {'minItems': 3, 'multiline': true}],
       'array-bracket-spacing': ['warn', 'never', {'objectsInArrays': false}],
       'object-property-newline': ['warn', {'allowAllPropertiesOnSameLine': true}],
       'quotes': ['warn', 'double', {'avoidEscape': true, 'allowTemplateLiterals': true}],
-      'jsx-quotes': ['off', 'prefer-single'],
+      'jsx-quotes': ['warn', 'prefer-single'],
       'prefer-const': 'warn',
-      '@next/next/no-img-element': 'off',
+      '@typescript-eslint/no-unused-vars': 'off',
+      '@typescript-eslint/no-explicit-any': 'warn',
+      '@next/next/no-img-element': 'warn'
     }
   }),
 ]

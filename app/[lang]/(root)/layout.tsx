@@ -14,9 +14,7 @@ export default async function HomeLayout({ children }: {
    return (
       <UserProvider user={user}>
         <Navbar/>
-        <main>
-          {children}
-        </main>
+        {children}
         <Footer/>
       </UserProvider>
    );

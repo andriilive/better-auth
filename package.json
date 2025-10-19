@@ -1,8 +1,9 @@
 {
   "name": "better-auth",
   "version": "0.1.0",
+  "description": "Next.js auth, i18n and RBAC boilerplate with Prisma, TailwindCSS and RadixUI",
   "author": {
-    "name": "Andrii Ivashchuk",
+    "name": "andriilive",
     "url": "https://github.com/andriilive"
   },
   "private": true,

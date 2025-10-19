@@ -50,17 +50,17 @@ export default async function Layout({ params, children }: {
 
   return (
     <html lang={lang} className={`${notoSansKR.variable}`} suppressHydrationWarning>
-    <body className="antialiased">
+    <body className='antialiased'>
     <ThemeProvider
-      attribute="class"
-      defaultTheme="light"
+      attribute='class'
+      defaultTheme='light'
       enableSystem={false}
       disableTransitionOnChange
     >
-      <NextTopLoader showSpinner={false} height={6} color="#000000"/>
+      <NextTopLoader showSpinner={false} height={6} color='#000000'/>
       <I18nProvider initialLocale={lang as I18nLocale}>
-        <Toaster richColors position="top-right"/>
-        <main className="min-h-screen">
+        <Toaster richColors position='top-right'/>
+        <main className='min-h-screen'>
           {children}
         </main>
       </I18nProvider>

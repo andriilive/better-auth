@@ -15,19 +15,19 @@ export function LangToggle() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline">
+        <Button variant='outline'>
           <span>{locale.code.toUpperCase()}</span>
           <span>{locale.flag}</span>
-          <ChevronDownIcon className="ml-2 h-4 w-4"/>
+          <ChevronDownIcon className='ml-2 h-4 w-4'/>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align='end'>
         {locales.map((locale) => (
           <DropdownMenuItem
             key={locale.key}
             onClick={() => switchLang(locale.key)}
           >
-            <span className="mr-2">{locale.flag}</span>
+            <span className='mr-2'>{locale.flag}</span>
             {locale.label}
           </DropdownMenuItem>
         ))}

@@ -12,23 +12,23 @@ export function NavbarUser(){
       {user ? (
         <>
           <Link
-            href="/dashboard"
-            className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+            href='/dashboard'
+            className='text-sm font-medium text-muted-foreground transition-colors hover:text-foreground'
           >
-            <Button variant="outline">Dashboard</Button>
+            <Button variant='outline'>Dashboard</Button>
           </Link>
           <SignOutForm/>
         </>
       ) : (
         <>
           <Link
-            href="/sign-in"
-            className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+            href='/sign-in'
+            className='text-sm font-medium text-muted-foreground transition-colors hover:text-foreground'
           >
-            <Button variant="outline">Login</Button>
+            <Button variant='outline'>Login</Button>
           </Link>
           <Button asChild>
-            <Link href="/sign-up">Sign up</Link>
+            <Link href='/sign-up'>Sign up</Link>
           </Button>
         </>
       )}
