@@ -1,7 +1,7 @@
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
 import { I18nProvider } from "@/context/I18nContext";
-import { type I18nLocale, locales } from "@/lib/i18n";
+import { getAlternates, type I18nLocale, locales } from "@/lib/i18n";
 import type { Metadata } from "next";
 import { Noto_Sans_KR } from "next/font/google";
 import "@/app/globals.css";
@@ -27,6 +27,7 @@ export const metadata: Metadata = {
   icons: {
     icon: "/logo.png",
   },
+  alternates: getAlternates("/"),
 };
 
 type LangParam<T = string> = {

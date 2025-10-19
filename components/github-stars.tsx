@@ -1,7 +1,7 @@
 import Link from "@/components/i18n/Link";
 
 import packageJson from "@/package.json"
-import { Loader, Star } from "lucide-react";
+import { Github, Loader, Star } from "lucide-react";
 import { Suspense } from "react"
 
 
@@ -49,12 +49,13 @@ export function GithubStars({
       className='text-sm rounded-full border bg-muted text-muted-foreground hover:bg-muted/70 transition'
     >
       <Link title={`GitHub Stars for ${repoSlug}`} href={repoUrl} isTranslatible={false} rel={"me"} className='px-4 py-1.5 inline-flex items-center gap-1'>
-        <span className='pr-1'>{repoSlug}</span>
+        <Github className='size-3 mr-0.5'/>
+        <strong className='pr-1'>{repoSlug}</strong>
         <i className='divider pl-1 h-4 border-l border-muted-foreground/50'/>
         <Suspense fallback={<Loader className='w-4 h-4 animate-spin'/>}>
           <GitHubStarsContent owner={owner} repo={repo}/>
         </Suspense>
-        <Star className='w-4 h-4 text-yellow-500'/>
+        <Star className='size-3 text-yellow-500'/>
       </Link>
     </div>
   )

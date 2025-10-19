@@ -1,36 +1,33 @@
+import Link from "@/components/i18n/Link";
 import { Button } from "@/components/ui/button"
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/ui/empty"
+import type { I18nLocale } from "@/lib/i18n";
+import { Translations } from "@/lib/str";
 import { ArrowUpRightIcon, LucideCloudy } from "lucide-react"
 
-export const str = {
-  "EmptyUploads": {
-    title: "You don't have any projects yet",
-    description: "You don't have any projects yet. Upload own files or browse the library to get started.",
-    "action.upload": "Upload image",
-    "action.library": "Browse library",
-    "action.login.description": "Already have an account? ",
-    "action.login.button": "Login",
-  },
-};
+const str = new Translations({
+  title: "You don't have any projects yet",
+  description: "You don't have any projects yet. Upload own files or browse the library to get started.",
+  "action.upload": "Upload image",
+  "action.library": "Browse library",
+  "action.login.description": "Already have an account?",
+  "action.login.button": "Login",
+});
 
-export const getTranslations = (ns: keyof typeof str) => {
+str.add("cs", {
+  title: "Ještě nemáte žádné projekty",
+  description: "Ještě nemáte žádné projekty. Nahrajte vlastní soubory nebo procházejte knihovnu a začněte.",
+  "action.upload": "Nahrát obrázek",
+  "action.library": "Procházet knihovnu",
+  "action.login.description": "Už máte účet?",
+})
 
-  if (!(ns in str)) {
-    throw new Error(`Namespace ${ns} not found in translations.`);
-  }
-
-  return {
-    t: (key: keyof typeof str[typeof ns]) => {
-      if (!(key in str[ns])) {
-        throw new Error(`Key ${key} not found in namespace ${ns}.`);
-      }
-      return str[ns][key];
-    },
-  }
-}
-
-export function EmptyUploads() {
-  const { t } = getTranslations("EmptyUploads");
+export function UploadsEmpty({
+  locale,
+}: {
+  locale: I18nLocale
+}) {
+  const t = str.t(locale);
 
   return (
     <Empty className='border border-dashed md:py-16'>
@@ -59,9 +56,9 @@ export function EmptyUploads() {
           className='text-muted-foreground'
           size='sm'
         >
-        <a href='#'>
-          {t("action.login.button")} <ArrowUpRightIcon/>
-        </a>
+        <Link href='#'>
+          {t("action.login.button")}{" "}<ArrowUpRightIcon/>
+        </Link>
       </Button>
 
       </span>
