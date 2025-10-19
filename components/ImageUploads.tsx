@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input"
 import { useToast } from "@/hooks/use-toast";
 import { countUploads, getUpload, type ImageUpload, listUploads, type ListUploadsResult, removeUpload, uploadNew } from "@/lib/browser-uploads"
 import { ChevronLeft, ChevronRight, ImageIcon, Trash2, Upload } from "lucide-react"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 
 export default function ImageUploads() {
   const [uploads, setUploads] = useState<ListUploadsResult | null>(null)
@@ -15,12 +15,13 @@ export default function ImageUploads() {
   const [currentPage, setCurrentPage] = useState(1)
   const [isUploading, setIsUploading] = useState(false)
   const [selectedImage, setSelectedImage] = useState<ImageUpload | null>(null)
-  const { errorToast, successToast, defaultToast } = useToast();
+  const { errorToast, successToast } = useToast();
+
 
   const pageSize = 6
 
   // Load uploads
-  const loadUploads = async (page: number = currentPage) => {
+  const loadUploads = useCallback(async (page: number = currentPage) => {
     try {
       const result = await listUploads({ page, pageSize })
       setUploads(result)
@@ -28,11 +29,9 @@ export default function ImageUploads() {
       setTotalCount(count)
     } catch (error) {
       console.error("[v0] Error loading uploads:", error)
-
       errorToast("Failed to load uploads");
-
     }
-  }
+  }, [currentPage, errorToast])
 
   useEffect(() => {
     loadUploads()
@@ -48,10 +47,8 @@ export default function ImageUploads() {
     try {
       for (const file of Array.from(files)) {
         if (!file.type.startsWith("image/")) {
-          toast("Invalid file", {
-            title: "Invalid file",
+          errorToast("Invalid file", {
             description: `${file.name} is not an image`,
-            variant: "destructive",
           })
           continue
         }
@@ -59,18 +56,16 @@ export default function ImageUploads() {
         await uploadNew(file)
       }
 
-      successToast(`${files.length} image(s) uploaded successfully`)
+      successToast(`Uploaded successfully`, {
+        description: `${files.length} image(s) uploaded`,
+      })
 
       // Reset to first page and reload
       setCurrentPage(1)
       await loadUploads(1)
     } catch (error) {
       console.error("[v0] Error uploading files:", error)
-      toast("error", {
-        title: "Error",
-        description: "Failed to upload images",
-        variant: "destructive",
-      })
+      errorToast("Failed to upload images");
     } finally {
       setIsUploading(false)
       event.target.value = ""
@@ -80,16 +75,17 @@ export default function ImageUploads() {
   // Handle delete
   const handleDelete = async (id: string) => {
     try {
+
       await removeUpload(id)
       //TODO: undo action
-      defaultToast("Image removed successfully")
+      successToast("Removed image", {
+        description: `Successfully removed the image`,
+      })
 
       await loadUploads()
     } catch (error) {
       console.error("[v0] Error deleting upload:", error)
-      errorToast("Failed to delete image", {
-        variant: "destructive",
-      });
+      errorToast("Failed to delete image");
     }
   }
 
@@ -100,8 +96,8 @@ export default function ImageUploads() {
       setSelectedImage(upload)
     } catch (error) {
       console.error("[v0] Error getting upload:", error)
-      errorToast("Failed to load image details", {
-        variant: "destructive",
+      errorToast("Failed to load", {
+        description: "Failed to load image details",
       });
     }
   }
@@ -152,6 +148,7 @@ export default function ImageUploads() {
               {uploads.uploads.map((upload) => (
                 <Card key={upload.id} className='overflow-hidden'>
                   <div className='aspect-video relative bg-muted'>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={upload.dataUrl || "/placeholder.svg"}
                       alt={upload.name}
@@ -234,6 +231,7 @@ export default function ImageUploads() {
                 <CardDescription>Image Details</CardDescription>
               </CardHeader>
               <CardContent>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={selectedImage.dataUrl || "/placeholder.svg"}
                   alt={selectedImage.name}
