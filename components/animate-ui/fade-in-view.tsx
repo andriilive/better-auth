@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { motion, useInView } from 'framer-motion';
-import React from 'react';
+import { motion, useInView } from "framer-motion";
+import React from "react";
 
 interface FadeInViewProps {
    children: React.ReactNode;
    delay?: number;
    duration?: number;
    distance?: number;
-   direction?: 'up' | 'down' | 'left' | 'right';
+   direction?: "up" | "down" | "left" | "right";
    className?: string;
    exit?: boolean;
 }
@@ -18,8 +18,8 @@ export default function FadeInView({
    delay = 0,
    duration = 0.6,
    distance = 50,
-   direction = 'up',
-   className = '',
+   direction = "up",
+   className = "",
    exit = false,
 }: FadeInViewProps) {
    const ref = React.useRef<HTMLDivElement | null>(null);
@@ -47,7 +47,7 @@ export default function FadeInView({
          scale: 1,
          transition: {
             duration,
-            delay
+            delay,
          },
       },
       exit: {
@@ -61,7 +61,7 @@ export default function FadeInView({
       <motion.div
          ref={ref}
          initial="hidden"
-         animate={inView ? 'visible' : exit ? 'exit' : 'hidden'}
+         animate={inView ? "visible" : exit ? "exit" : "hidden"}
          variants={variants}
          className={className}
       >

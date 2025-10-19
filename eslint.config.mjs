@@ -1,41 +1,45 @@
-import {FlatCompat} from "@eslint/eslintrc";
-import {dirname} from "path";
-import {fileURLToPath} from "url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import {FlatCompat} from '@eslint/eslintrc'
 
 const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
+  baseDirectory: import.meta.dirname,
+})
 
 const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
-  {
-    ignores: [
-      "prisma/**",
-      "node_modules/**",
-      ".next/**",
-      "out/**",
-      "build/**",
-      "next-env.d.ts",
-      ".next"
+  ...compat.config({
+    extends: ['next/core-web-vitals', 'next/typescript'],
+    ignorePatterns: [
+      'node_modules/',
+      'build/',
+      'dist/',
+      'out/',
+      '.next/',
+      '.vercel/',
+      '.husky/',
+      'prisma/',
+      'public/',
+      'next-env.d.ts',
+      '/*.config.*',
     ],
     rules: {
-      '@typescript-eslint/no-explicit-any': 'warn',
-      "@typescript-eslint/no-unused-vars": [
-        "warn", {
-          "args": "after-used",
-          "argsIgnorePattern": "^_",
-          "caughtErrors": "all",
-          "caughtErrorsIgnorePattern": "^_",
-          "destructuredArrayIgnorePattern": "^_",
-          "varsIgnorePattern": "^_",
-          "ignoreRestSiblings": true
-        }
-      ]
+      'import/no-unresolved': 'off',
+      'import/extensions': 'off',
+      'no-unused-vars': 'off',
+      'no-console': ['warn', {allow: ['warn', 'error']}],
+      '@typescript-eslint/no-unused-vars': 'off',
+      'comma-dangle': ['warn', 'always-multiline'],
+      'comma-spacing': ['warn', {'before': false, 'after': true}],
+      'object-curly-spacing': ['warn', 'always'],
+      'object-curly-newline': ['warn', {'multiline': true, 'consistent': true}],
+      'array-bracket-newline': ['warn', {'minItems': 3, 'multiline': true}],
+      'array-element-newline': ['warn', {'minItems': 3, 'multiline': false}],
+      'array-bracket-spacing': ['warn', 'never', {'objectsInArrays': false}],
+      'object-property-newline': ['warn', {'allowAllPropertiesOnSameLine': true}],
+      'quotes': ['warn', 'double', {'avoidEscape': true, 'allowTemplateLiterals': true}],
+      'jsx-quotes': ['off', 'prefer-single'],
+      'prefer-const': 'warn',
+      '@next/next/no-img-element': 'off',
     }
-  },
-];
+  }),
+]
 
-export default eslintConfig;
+export default eslintConfig

@@ -5,9 +5,12 @@ const nextConfig: NextConfig = {
   images: {
     domains: ['*.github*.com'],
   },
-  webpack(config) {
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  webpack(config: any) {
     // Grab the existing rule that handles SVG imports
-    const fileLoaderRule = config.module.rules.find((rule) =>
+    const fileLoaderRule = config.module.rules.find((rule: any) =>
       rule.test?.test?.('.svg'),
     )
 

@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import {usePathname, useRouter} from "next/navigation";
-import React, {createContext, type PropsWithChildren, useContext, useState} from "react";
+import { usePathname, useRouter } from "next/navigation";
+import React, { createContext, type PropsWithChildren, useContext, useState } from "react";
 import {
   getAlternates as _getAlternates,
   type I18nLocale,
-  translatePath as _translatePath
+  translatePath as _translatePath,
 } from "@/lib/i18n";
 
 interface I18nContextType {
@@ -24,23 +24,22 @@ const I18nContext = createContext<I18nContextType | null>(null);
 
 export const I18nProvider = ({
   initialLocale,
-  children
+  children,
 }: PropsWithChildren<{ initialLocale: I18nLocale }>) => {
   const [lang, setLang] = useState(initialLocale);
   const pathname = usePathname();
-  const {replace} = useRouter();
+  const { replace } = useRouter();
 
-  const getAlternates : I18nContextType['getAlternates'] = (path = pathname) => _getAlternates(path, lang);
-  const translatePath : I18nContextType['translatePath'] = (newLang, path = pathname) => _translatePath(newLang, path, lang);
+  const getAlternates : I18nContextType["getAlternates"] = (path = pathname) => _getAlternates(path);
+  const translatePath : I18nContextType["translatePath"] = (newLang, path = pathname) => _translatePath(newLang, path);
 
-  const switchLang : I18nContextType['switchLang'] = (newLang) => {
-    if (newLang === lang) return;
-    setLang(newLang);
-    replace(translatePath(newLang));
+  const switchLang : I18nContextType["switchLang"] = (lang) => {
+    setLang(lang);
+    replace(translatePath(lang));
   };
 
   return (
-    <I18nContext.Provider value={{lang, switchLang, getAlternates, translatePath}}>
+    <I18nContext.Provider value={{ lang, switchLang, getAlternates, translatePath }}>
       {children}
     </I18nContext.Provider>
   );

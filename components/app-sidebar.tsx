@@ -2,12 +2,12 @@
 
 import Link from "@/components/i18n/Link"
 import Logo from "@/components/Logo"
-import {Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarRail,} from "@/components/ui/sidebar"
-import {LayoutDashboard} from "lucide-react"
-import {usePathname} from "next/navigation"
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarRail } from "@/components/ui/sidebar"
+import { LayoutDashboard } from "lucide-react"
+import { usePathname } from "next/navigation"
 import SignOutForm from "./sign-out-form"
 
-export default function AppSidebar({...props}: React.ComponentProps<typeof Sidebar>) {
+export default function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const pathname = usePathname();
   const isActive = pathname.startsWith("/dashboard")
   return (

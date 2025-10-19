@@ -10,8 +10,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "postinstall": "prisma generate"
+    "lint": "eslint",
+    "postinstall": "prisma generate && husky init",
+    "prepare": "husky init && prisma generate",
+    "pre-commit": "npm run lint -- --fix",
+    "pre-push": "npm run build"
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.6.2",
@@ -54,6 +57,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.5.5",
+    "husky": "^9.1.7",
     "prisma": "^6.17.1",
     "tailwind-merge": "^3.3.1",
     "tailwindcss": "^4",

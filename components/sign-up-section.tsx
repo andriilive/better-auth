@@ -1,14 +1,14 @@
 "use client"
 
-import {signInWithGoogle} from "@/actions/google-auth-action"
-import {Button} from "@/components/ui/button"
-import type {JSX, SVGProps} from "react"
+import { signInWithGoogle } from "@/actions/google-auth-action"
+import { Button } from "@/components/ui/button"
+import type { JSX, SVGProps } from "react"
 import SignUpForm from "./sign-up-form"
 import Link from "@/components/i18n/Link"
 import Logo from "@/components/Logo"
 
 const GoogleIcon = (
-  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
 ) => (
   <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
     <path

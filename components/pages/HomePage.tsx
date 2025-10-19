@@ -1,8 +1,10 @@
+"use client"
+
 import FadeInView from "@/components/animate-ui/fade-in-view";
 import Link from "@/components/i18n/Link";
-import {Badge} from "@/components/ui/badge";
-import {Button} from "@/components/ui/button";
-import {ExternalLink, Github, Sparkles} from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { ExternalLink, Github, Sparkles } from "lucide-react";
 
 export function HomePage(){
   return (
@@ -26,6 +28,7 @@ export function HomePage(){
             <Link
               href="https://github.com/devAaus/better-auth"
               target="_blank"
+              isTranslatible={false}
               className="flex items-center gap-2"
             >
               <Github className="h-5 w-5"/>

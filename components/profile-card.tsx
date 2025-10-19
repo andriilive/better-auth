@@ -3,7 +3,7 @@
 import {
    Card,
    CardContent,
-   CardHeader
+   CardHeader,
 } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -12,7 +12,7 @@ import { Check, Clock, Mail, MapPin, Shield } from "lucide-react"
 import { useUser } from "@/context/UserContext"
 
 export default function ProfileCard() {
-   const {user} = useUser();
+   const { user } = useUser();
    return (
       <Card className="overflow-hidden">
          <CardHeader className="relative p-0">
@@ -20,7 +20,7 @@ export default function ProfileCard() {
             <div className="absolute -bottom-12 left-4">
                <div className="relative">
                   <Avatar className="h-24 w-24 border-4 border-background">
-                     <AvatarImage src={user?.image || ''} alt="John Doe" />
+                     <AvatarImage src={user?.image || ""} alt="John Doe" />
                      <AvatarFallback className="text-6xl font-bold">
                         {user?.name.charAt(0)}
                      </AvatarFallback>
@@ -40,7 +40,7 @@ export default function ProfileCard() {
             <div className="flex items-center gap-2 mt-4">
                <Badge variant="outline" className="flex items-center gap-1">
                   <Check className="h-3 w-3" />
-                  {user?.emailVerified ? 'Verified' : 'Not Verified'}
+                  {user?.emailVerified ? "Verified" : "Not Verified"}
                </Badge>
                <Badge variant="outline" className="flex items-center gap-1">
                   <Clock className="h-3 w-3" />

@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import {Button} from "@/components/ui/button";
-import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
-import {useTranslations} from "@/context/I18nContext";
-import {localesConfig} from "@/lib/i18n";
-import {ChevronDownIcon} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { useTranslations } from "@/context/I18nContext";
+import { localesConfig } from "@/lib/i18n";
+import { ChevronDownIcon } from "lucide-react";
 
 export function LangToggle() {
-  const {switchLang, lang} = useTranslations();
+  const { switchLang, lang } = useTranslations();
 
   const locale = localesConfig.getByKey(lang);
   const locales = localesConfig.items;
