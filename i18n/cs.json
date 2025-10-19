@@ -1,0 +1,11 @@
+{
+  "homepage.welcome": "Default CS Welcome Message",
+  "metadata.title": "Application CS",
+
+  "user.title": "Uživatel",
+
+  "user.dashboard": "Uživatelský panel",
+  "user.signIn": "Přihlásit se",
+  "user.signUp": "Registrace",
+  "user.signOut": "Odhlásit se"
+}

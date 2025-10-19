@@ -1,0 +1,14 @@
+{
+  "homepage.welcome": "Default Welcome Message",
+  "homepage.fallback": "Fallback (en|cs) test",
+  "homepage.title": "Homepage",
+
+  "metadata.title": "Application",
+
+  "user.title": "User",
+
+  "user.dashboard": "User Dashboard",
+  "user.signIn": "Sign In",
+  "user.signUp": "Sign Up",
+  "user.signOut": "Sign Out"
+}

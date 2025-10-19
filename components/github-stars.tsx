@@ -1,4 +1,4 @@
-import Link from "@/components/i18n/Link";
+import { Link } from "@/components/i18n/link";
 
 import packageJson from "@/package.json"
 import { Github, Loader, Star } from "lucide-react";

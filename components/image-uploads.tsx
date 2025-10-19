@@ -9,7 +9,7 @@ import { countUploads, getUpload, type ImageUpload, listUploads, type ListUpload
 import { ChevronLeft, ChevronRight, ImageIcon, Trash2, Upload } from "lucide-react"
 import { useCallback, useEffect, useState } from "react"
 
-export default function ImageUploads() {
+export function ImageUploads() {
   const [uploads, setUploads] = useState<ListUploadsResult | null>(null)
   const [totalCount, setTotalCount] = useState(0)
   const [currentPage, setCurrentPage] = useState(1)

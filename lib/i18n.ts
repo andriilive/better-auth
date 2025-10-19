@@ -1,3 +1,9 @@
+import i18nCsJson from "@/i18n/cs.json"
+import i18nEnJson from "@/i18n/en.json"
+
+type I18nEnKey = keyof typeof i18nEnJson;
+type I18nCsKey = keyof typeof i18nCsJson;
+
 const _locales = ["en", "cs"] as const;
 
 const _defaultLocale = _locales[0];
@@ -65,6 +71,33 @@ export const translatePath = (newLang: I18nLocale, path: string): string => {
 
 export const getAlternates = (pathname: string) => {
   return locales.map((locale) => ({
-    hrefLang: locale, href: translatePath(locale, pathname),
+    hrefLang: locale,
+    href: translatePath(locale, pathname),
   }))
+}
+
+export type I18nAnyKey = I18nEnKey | I18nCsKey;
+
+export const languagesMap: Record<I18nLocale, Record<string, string>> = {
+  en: i18nEnJson,
+  cs: i18nCsJson,
+}
+
+export function getString(key: I18nAnyKey, lang: I18nLocale = defaultLocale): string {
+  const dictionary = languagesMap[lang];
+  if (key in dictionary) {
+    return dictionary[key as keyof typeof dictionary];
+  }
+  const defaultDictionary = languagesMap[defaultLocale];
+  return defaultDictionary[key as keyof typeof defaultDictionary] || String("key not found " + key);
+}
+
+export function parseLangParams(params: {
+  lang: string;
+}) {
+  const { lang } = params as { lang: I18nLocale };
+  return {
+    lang,
+    t: (key: I18nAnyKey) => translatePath(lang, key),
+  }
 }

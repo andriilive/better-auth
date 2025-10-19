@@ -1,7 +1,7 @@
 "use client"
 
-import Link from "@/components/i18n/Link"
-import Logo from "@/components/Logo"
+import { Link } from "@/components/i18n/link"
+import { Logo } from "@/components/Logo"
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarRail } from "@/components/ui/sidebar"
 import { LayoutDashboard } from "lucide-react"
 import { usePathname } from "next/navigation"

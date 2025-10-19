@@ -16,6 +16,7 @@ const eslintConfig = [
       'dist/',
       'out/',
       '.next/',
+      './next/**',
       '.vercel/',
       '.husky/',
       'prisma/',

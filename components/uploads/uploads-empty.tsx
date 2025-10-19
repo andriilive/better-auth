@@ -1,4 +1,4 @@
-import Link from "@/components/i18n/Link";
+import { Link } from "@/components/i18n/link";
 import { Button } from "@/components/ui/button"
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/ui/empty"
 import type { I18nLocale } from "@/lib/i18n";

@@ -10,7 +10,7 @@ type LinkProps = FC<ComponentProps<typeof NextLink> & {
   isTranslatible?: boolean
 }>;
 
-const Link: LinkProps = ({ isTranslatible = true, href, ...props }) => {
+export const Link: LinkProps = ({ isTranslatible = true, href, ...props }) => {
   const pathname = usePathname();
   const { lang } = useTranslations();
 
@@ -39,6 +39,4 @@ const Link: LinkProps = ({ isTranslatible = true, href, ...props }) => {
   }
 
   return <NextLink href={href} {...props} />
-}
-
-export default Link;
+};
